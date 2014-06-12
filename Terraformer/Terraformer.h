@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double TerraformerVersionNumber;
 FOUNDATION_EXPORT const unsigned char TerraformerVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Terraformer/PublicHeader.h>
-
-

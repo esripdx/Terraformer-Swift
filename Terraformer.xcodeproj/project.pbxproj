@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		034A50D819491CD400E98741 /* MultiPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A50D719491CD400E98741 /* MultiPointTests.swift */; };
+		034A50DA1949224300E98741 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A50D91949224300E98741 /* Point.swift */; };
+		034A50DC1949226C00E98741 /* MultiPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A50DB1949226C00E98741 /* MultiPoint.swift */; };
 		03EB0FA01948CEC50068805F /* Terraformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 03EB0F9F1948CEC50068805F /* Terraformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03EB0FA61948CEC50068805F /* Terraformer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03EB0F9A1948CEC50068805F /* Terraformer.framework */; };
 		03EB0FAD1948CEC50068805F /* TerraformerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EB0FAC1948CEC50068805F /* TerraformerTests.swift */; };
+		03EB0FBE1948D1FD0068805F /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EB0FBD1948D1FD0068805F /* PointTests.swift */; };
+		03EB0FC01948D5480068805F /* Terraformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EB0FBF1948D5480068805F /* Terraformer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -20,15 +25,27 @@
 			remoteGlobalIDString = 03EB0F991948CEC50068805F;
 			remoteInfo = Terraformer;
 		};
+		03EB0FC11948D5FF0068805F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03EB0F911948CEC50068805F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03EB0F991948CEC50068805F;
+			remoteInfo = Terraformer;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		034A50D719491CD400E98741 /* MultiPointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointTests.swift; sourceTree = "<group>"; };
+		034A50D91949224300E98741 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		034A50DB1949226C00E98741 /* MultiPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPoint.swift; sourceTree = "<group>"; };
 		03EB0F9A1948CEC50068805F /* Terraformer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Terraformer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03EB0F9E1948CEC50068805F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03EB0F9F1948CEC50068805F /* Terraformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Terraformer.h; sourceTree = "<group>"; };
 		03EB0FA51948CEC50068805F /* TerraformerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerraformerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03EB0FAB1948CEC50068805F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03EB0FAC1948CEC50068805F /* TerraformerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraformerTests.swift; sourceTree = "<group>"; };
+		03EB0FBD1948D1FD0068805F /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
+		03EB0FBF1948D5480068805F /* Terraformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Terraformer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +90,9 @@
 			children = (
 				03EB0F9F1948CEC50068805F /* Terraformer.h */,
 				03EB0F9D1948CEC50068805F /* Supporting Files */,
+				03EB0FBF1948D5480068805F /* Terraformer.swift */,
+				034A50DB1949226C00E98741 /* MultiPoint.swift */,
+				034A50D91949224300E98741 /* Point.swift */,
 			);
 			path = Terraformer;
 			sourceTree = "<group>";
@@ -90,6 +110,8 @@
 			children = (
 				03EB0FAC1948CEC50068805F /* TerraformerTests.swift */,
 				03EB0FAA1948CEC50068805F /* Supporting Files */,
+				03EB0FBD1948D1FD0068805F /* PointTests.swift */,
+				034A50D719491CD400E98741 /* MultiPointTests.swift */,
 			);
 			path = TerraformerTests;
 			sourceTree = "<group>";
@@ -146,6 +168,7 @@
 			);
 			dependencies = (
 				03EB0FA81948CEC50068805F /* PBXTargetDependency */,
+				03EB0FC21948D5FF0068805F /* PBXTargetDependency */,
 			);
 			name = TerraformerTests;
 			productName = TerraformerTests;
@@ -210,6 +233,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				034A50DA1949224300E98741 /* Point.swift in Sources */,
+				034A50DC1949226C00E98741 /* MultiPoint.swift in Sources */,
+				03EB0FC01948D5480068805F /* Terraformer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +243,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03EB0FBE1948D1FD0068805F /* PointTests.swift in Sources */,
+				034A50D819491CD400E98741 /* MultiPointTests.swift in Sources */,
 				03EB0FAD1948CEC50068805F /* TerraformerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +256,11 @@
 			isa = PBXTargetDependency;
 			target = 03EB0F991948CEC50068805F /* Terraformer */;
 			targetProxy = 03EB0FA71948CEC50068805F /* PBXContainerItemProxy */;
+		};
+		03EB0FC21948D5FF0068805F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 03EB0F991948CEC50068805F /* Terraformer */;
+			targetProxy = 03EB0FC11948D5FF0068805F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -320,6 +353,7 @@
 		03EB0FB11948CEC50068805F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -329,12 +363,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		03EB0FB21948CEC50068805F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -398,6 +434,7 @@
 				03EB0FB21948CEC50068805F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		03EB0FB31948CEC50068805F /* Build configuration list for PBXNativeTarget "TerraformerTests" */ = {
 			isa = XCConfigurationList;
@@ -406,6 +443,7 @@
 				03EB0FB51948CEC50068805F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
