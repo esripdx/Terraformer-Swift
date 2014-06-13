@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		033792E6194A4D6100115A99 /* GeometryCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033792E5194A4D6100115A99 /* GeometryCollection.swift */; };
 		034A50D819491CD400E98741 /* MultiPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A50D719491CD400E98741 /* MultiPointTests.swift */; };
 		034A50DA1949224300E98741 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A50D91949224300E98741 /* Point.swift */; };
 		034A50DC1949226C00E98741 /* MultiPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A50DB1949226C00E98741 /* MultiPoint.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		033792E5194A4D6100115A99 /* GeometryCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryCollection.swift; sourceTree = "<group>"; };
 		034A50D719491CD400E98741 /* MultiPointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointTests.swift; sourceTree = "<group>"; };
 		034A50D91949224300E98741 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		034A50DB1949226C00E98741 /* MultiPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPoint.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				03EB0FBF1948D5480068805F /* Terraformer.swift */,
 				034A50DB1949226C00E98741 /* MultiPoint.swift */,
 				034A50D91949224300E98741 /* Point.swift */,
+				033792E5194A4D6100115A99 /* GeometryCollection.swift */,
 			);
 			path = Terraformer;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			files = (
 				034A50DA1949224300E98741 /* Point.swift in Sources */,
 				034A50DC1949226C00E98741 /* MultiPoint.swift in Sources */,
+				033792E6194A4D6100115A99 /* GeometryCollection.swift in Sources */,
 				03EB0FC01948D5480068805F /* Terraformer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
