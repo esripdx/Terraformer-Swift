@@ -25,7 +25,7 @@ extension Terraformer {
         func toJson() -> NSDictionary {
             var fs = Any[]()
             for f in features {
-                fs.append(f)
+                fs.append(f.toJson())
             }
             
             return ["type": type.toRaw(), "features": fs]

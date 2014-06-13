@@ -22,12 +22,12 @@ extension Terraformer {
         }
         
         func toJson() -> NSDictionary {
-            var g = Any[]()
-            for p in geometries {
-                g.append(p)
+            var gs = Any[]()
+            for g in geometries {
+                gs.append(g.toJson())
             }
             
-            return ["type": type.toRaw(), "geometries": g]
+            return ["type": type.toRaw(), "geometries": gs]
         }
         
         class func fromJson(json: NSDictionary) -> GeometryCollection? {
