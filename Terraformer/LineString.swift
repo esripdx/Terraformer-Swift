@@ -9,13 +9,36 @@
 import Foundation
 
 extension Terraformer {
-    class LineString : MultiPoint {
-        override func type() -> GeoJsonType {
-            return GeoJsonType.LineString
+    class LineString<Point> : CoordinateGeometry {
+        var coordinates = Point[]()
+        var type = GeoJsonType.LineString
+        
+        init(points: Point[]) {
+            coordinates = points
         }
         
-        override class func fromJson(json: NSDictionary) -> LineString? {
-            if getType(json) == GeoJsonType.LineString {
+        convenience init(_ points: Point...) {
+            self.init(points: points)
+        }
+        
+        convenience init(coordinates: Double[][]) {
+            for coord in coordinates {
+                self.coordinates.append(Point(coordinates: coord))
+            }
+            self.init()
+        }
+        
+        func toJson() -> NSDictionary {
+            var c = Any[]()
+            for p in coordinates {
+                c.append(p)
+            }
+            
+            return ["type": type.toRaw(), "coordinates": c]
+        }
+        
+        class func fromJson(json: NSDictionary) -> LineString? {
+            if Terraformer.getType(json) == GeoJsonType.LineString {
                 if let coords = json["coordinates"] as? Double[][] {
                     return LineString(coordinates: coords)
                 }

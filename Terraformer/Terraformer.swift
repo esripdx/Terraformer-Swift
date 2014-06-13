@@ -21,60 +21,53 @@ enum GeoJsonType: String {
     case Unknown = "Unknown"
 }
 
+protocol GeoJson {
+    var type: GeoJsonType { get }
+    func toJson() -> NSDictionary
+}
+
+protocol Geometry : GeoJson {}
+
+protocol CoordinateGeometry : Geometry {
+    typealias Element
+    var coordinates: Element[] { get set }
+}
+
+// todo: remove class wrapper when namespacing works
 class Terraformer {
-    
-    class GeoJson {
-        
-        // override me
-        func type() -> GeoJsonType {
-            return GeoJsonType.Unknown
-        }
-        
-        class func getType(json: NSDictionary) -> GeoJsonType {
-            var returnVal = GeoJsonType.Unknown
-            if let type = json["type"] as? String {
-                if let gjt = GeoJsonType.fromRaw(type) {
-                    returnVal = gjt
-                }
-            }
-            
-            return returnVal
-        }
-        
-        class func parseGeoJson(json: NSDictionary) -> GeoJson? {
-            switch getType(json) {
-            case GeoJsonType.Point:
-                return Point.fromJson(json)
-            case GeoJsonType.MultiPoint:
-                return MultiPoint.fromJson(json)
-            case GeoJsonType.LineString:
-                return LineString.fromJson(json)
-            case GeoJsonType.MultiLineString:
-                return MultiLineString.fromJson(json)
-            case GeoJsonType.Polygon:
-                return Polygon.fromJson(json)
-            case GeoJsonType.MultiPolygon:
-                return MultiPolygon.fromJson(json)
-            case GeoJsonType.GeometryCollection:
-                return GeometryCollection.fromJson(json)
-            case GeoJsonType.Feature:
-                return Feature.fromJson(json)
-            case GeoJsonType.FeatureCollection:
-                return FeatureCollection.fromJson(json)
-            case GeoJsonType.Unknown:
-                return nil
+    class func getType(json: NSDictionary) -> GeoJsonType {
+        var returnVal = GeoJsonType.Unknown
+        if let type = json["type"] as? String {
+            if let gjt = GeoJsonType.fromRaw(type) {
+                returnVal = gjt
             }
         }
+        
+        return returnVal
     }
     
-    class Geometry : GeoJson {
-                
-        func coordinates() -> AnyObject[] {
-            return []
+    class func parse(json: NSDictionary) -> GeoJson? {
+        switch getType(json) {
+        case GeoJsonType.Point:
+            return Point.fromJson(json)
+        case GeoJsonType.MultiPoint:
+            return MultiPoint.fromJson(json)
+        case GeoJsonType.LineString:
+            return LineString.fromJson(json)
+        case GeoJsonType.MultiLineString:
+            return MultiLineString.fromJson(json)
+        case GeoJsonType.Polygon:
+            return Polygon.fromJson(json)
+        case GeoJsonType.MultiPolygon:
+            return MultiPolygon.fromJson(json)
+        case GeoJsonType.GeometryCollection:
+            return GeometryCollection.fromJson(json)
+        case GeoJsonType.Feature:
+            return Feature.fromJson(json)
+        case GeoJsonType.FeatureCollection:
+            return FeatureCollection.fromJson(json)
+        case GeoJsonType.Unknown:
+            return nil
         }
-    }
-    
-    init() {
-        var p = Point(x: 1, y: 2)
     }
 }

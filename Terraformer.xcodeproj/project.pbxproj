@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		033792E6194A4D6100115A99 /* GeometryCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033792E5194A4D6100115A99 /* GeometryCollection.swift */; };
 		034A50D819491CD400E98741 /* MultiPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A50D719491CD400E98741 /* MultiPointTests.swift */; };
-		034A50DA1949224300E98741 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A50D91949224300E98741 /* Point.swift */; };
 		034A50DC1949226C00E98741 /* MultiPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A50DB1949226C00E98741 /* MultiPoint.swift */; };
 		03EB0FA01948CEC50068805F /* Terraformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 03EB0F9F1948CEC50068805F /* Terraformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03EB0FA61948CEC50068805F /* Terraformer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03EB0F9A1948CEC50068805F /* Terraformer.framework */; };
 		03EB0FAD1948CEC50068805F /* TerraformerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EB0FAC1948CEC50068805F /* TerraformerTests.swift */; };
 		03EB0FBE1948D1FD0068805F /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EB0FBD1948D1FD0068805F /* PointTests.swift */; };
 		03EB0FC01948D5480068805F /* Terraformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EB0FBF1948D5480068805F /* Terraformer.swift */; };
+		20AC4870194B863700F956EB /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC486F194B863700F956EB /* Point.swift */; };
 		20C6DD36194B5FA0001C0A56 /* LineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C6DD35194B5FA0001C0A56 /* LineString.swift */; };
 		20C6DD38194B5FC4001C0A56 /* MultiLineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C6DD37194B5FC4001C0A56 /* MultiLineString.swift */; };
 		20C6DD3A194B5FDF001C0A56 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C6DD39194B5FDF001C0A56 /* Polygon.swift */; };
@@ -44,7 +44,6 @@
 /* Begin PBXFileReference section */
 		033792E5194A4D6100115A99 /* GeometryCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryCollection.swift; sourceTree = "<group>"; };
 		034A50D719491CD400E98741 /* MultiPointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointTests.swift; sourceTree = "<group>"; };
-		034A50D91949224300E98741 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		034A50DB1949226C00E98741 /* MultiPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPoint.swift; sourceTree = "<group>"; };
 		03EB0F9A1948CEC50068805F /* Terraformer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Terraformer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03EB0F9E1948CEC50068805F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +53,7 @@
 		03EB0FAC1948CEC50068805F /* TerraformerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraformerTests.swift; sourceTree = "<group>"; };
 		03EB0FBD1948D1FD0068805F /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
 		03EB0FBF1948D5480068805F /* Terraformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Terraformer.swift; sourceTree = "<group>"; };
+		20AC486F194B863700F956EB /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		20C6DD35194B5FA0001C0A56 /* LineString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineString.swift; sourceTree = "<group>"; };
 		20C6DD37194B5FC4001C0A56 /* MultiLineString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiLineString.swift; sourceTree = "<group>"; };
 		20C6DD39194B5FDF001C0A56 /* Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
@@ -105,13 +105,13 @@
 				03EB0F9F1948CEC50068805F /* Terraformer.h */,
 				03EB0F9D1948CEC50068805F /* Supporting Files */,
 				03EB0FBF1948D5480068805F /* Terraformer.swift */,
+				20AC486F194B863700F956EB /* Point.swift */,
 				034A50DB1949226C00E98741 /* MultiPoint.swift */,
-				034A50D91949224300E98741 /* Point.swift */,
-				033792E5194A4D6100115A99 /* GeometryCollection.swift */,
 				20C6DD35194B5FA0001C0A56 /* LineString.swift */,
 				20C6DD37194B5FC4001C0A56 /* MultiLineString.swift */,
 				20C6DD39194B5FDF001C0A56 /* Polygon.swift */,
 				20C6DD3B194B5FEB001C0A56 /* MultiPolygon.swift */,
+				033792E5194A4D6100115A99 /* GeometryCollection.swift */,
 				20C6DD3D194B5FF4001C0A56 /* Feature.swift */,
 				20C6DD3F194B5FFB001C0A56 /* FeatureCollection.swift */,
 			);
@@ -256,11 +256,11 @@
 			files = (
 				20C6DD3C194B5FEB001C0A56 /* MultiPolygon.swift in Sources */,
 				20C6DD38194B5FC4001C0A56 /* MultiLineString.swift in Sources */,
-				034A50DA1949224300E98741 /* Point.swift in Sources */,
 				034A50DC1949226C00E98741 /* MultiPoint.swift in Sources */,
 				033792E6194A4D6100115A99 /* GeometryCollection.swift in Sources */,
 				03EB0FC01948D5480068805F /* Terraformer.swift in Sources */,
 				20C6DD40194B5FFB001C0A56 /* FeatureCollection.swift in Sources */,
+				20AC4870194B863700F956EB /* Point.swift in Sources */,
 				20C6DD3E194B5FF4001C0A56 /* Feature.swift in Sources */,
 				20C6DD36194B5FA0001C0A56 /* LineString.swift in Sources */,
 				20C6DD3A194B5FDF001C0A56 /* Polygon.swift in Sources */,

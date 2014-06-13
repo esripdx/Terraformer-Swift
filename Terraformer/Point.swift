@@ -2,25 +2,26 @@
 //  Point.swift
 //  Terraformer
 //
-//  Created by Josh Yaganeh on 6/11/14.
+//  Created by Courtf on 6/13/2014.
 //  Copyright (c) 2014 esri. All rights reserved.
 //
 
 import Foundation
 
 extension Terraformer {
-    class Point : Geometry {
-        var coordinate = Double[]()
+    class Point<Double> : CoordinateGeometry {
+        var type = GeoJsonType.Point
+        var coordinates = Double[]()
         
         // Convenience accessors
         var x : Double {
-        get { return coordinate[0] }
-        set { coordinate[0] = newValue }
+        get { return coordinates[0] }
+        set { coordinates[0] = newValue }
         }
         
         var y : Double {
-        get { return coordinate[1] }
-        set { coordinate[1] = newValue }
+        get { return coordinates[1] }
+        set { coordinates[1] = newValue }
         }
         
         var latitude : Double {
@@ -33,34 +34,33 @@ extension Terraformer {
         }
         
         // todo: should this validate that length >= 2?
-        init(coordinate: Double[]) {
-            self.coordinate = coordinate
+        init(coordinates: Double[]) {
+            self.coordinates = coordinates
+        }
+        
+        convenience init(_ coordinates: Double...) {
+            self.init(coordinates: coordinates)
         }
         
         convenience init(latitude: Double, longitude: Double) {
-            self.init(coordinate: [longitude, latitude])
+            self.init(coordinates: [longitude, latitude])
         }
         
         convenience init(x: Double, y: Double) {
-            self.init(coordinate: [x, y])
-        }
-        
-        override func type() -> GeoJsonType {
-            return GeoJsonType.Point
+            self.init(coordinates: [x, y])
         }
         
         func toJson() -> NSDictionary {
             return [
-                "type": type().toRaw(),
-                "coordinates": coordinate
+                "type": type.toRaw(),
+                "coordinates": coordinates
             ]
         }
-
         
         class func fromJson(json: NSDictionary) -> Point? {
-            if getType(json) == GeoJsonType.Point {
+            if Terraformer.getType(json) == GeoJsonType.Point {
                 if let coord = json["coordinates"] as? Double[] {
-                    return Point(coordinate: coord)
+                    return Point(coordinates: coord)
                 }
             }
             
