@@ -9,11 +9,12 @@
 import Foundation
 
 extension Terraformer {
-    class MultiPoint : Geometry {
-        var points = Point[]()
+    class MultiPoint<Point> : CoordinateGeometry {
+        var coordinates = Point[]()
+        var type = GeoJsonType.MultiPoint
         
         init(points: Point[]) {
-            self.points = points
+            coordinates = points
         }
         
         convenience init(_ points: Point...) {
@@ -21,28 +22,23 @@ extension Terraformer {
         }
         
         convenience init(coordinates: Double[][]) {
-            self.init()
-            for dblArray in coordinates {
-                points.append(Point(coordinate: dblArray))
+            for coord in coordinates {
+                self.coordinates.append(Point(coordinates: coord))
             }
+            self.init()
         }
         
-        override func type() -> GeoJsonType {
-            return GeoJsonType.MultiPoint
-        }
-        
-        
-        func toJson() -> Dictionary<String, AnyObject> {
-            var c = AnyObject[]()
-            for p in points {
-                c.append(p.coordinate)
+        func toJson() -> NSDictionary {
+            var c = Any[]()
+            for p in coordinates {
+                c.append(p)
             }
             
-            return ["type": type().toRaw(), "coordinates": c]
+            return ["type": type.toRaw(), "coordinates": c]
         }
         
         class func fromJson(json: NSDictionary) -> MultiPoint? {
-            if getType(json) == GeoJsonType.MultiPoint {
+            if Terraformer.getType(json) == GeoJsonType.MultiPoint {
                 if let coords = json["coordinates"] as? Double[][] {
                     return MultiPoint(coordinates: coords)
                 }

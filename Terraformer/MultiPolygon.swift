@@ -9,11 +9,12 @@
 import Foundation
 
 extension Terraformer {
-    class MultiPolygon : Geometry {
-        var polygons = Polygon[]()
+    class MultiPolygon<Polygon> : CoordinateGeometry {
+        var type = GeoJsonType.MultiPolygon
+        var coordinates = Polygon[]()
         
         init(polygons: Polygon[]) {
-            self.polygons = polygons
+            coordinates = polygons
         }
         
         convenience init(_ polygons: Polygon...) {
@@ -21,18 +22,23 @@ extension Terraformer {
         }
         
         convenience init(coordinates: Double[][][][]) {
-            self.init()
             for arr in coordinates {
-                polygons.append(Polygon(coordinates: arr))
+                self.coordinates.append(Polygon(coordinates: arr))
             }
+            self.init()
         }
         
-        override func type() -> GeoJsonType {
-            return GeoJsonType.MultiPolygon
+        func toJson() -> NSDictionary {
+            var c = Any[]()
+            for p in coordinates {
+                c.append(p)
+            }
+            
+            return ["type": type.toRaw(), "coordinates": c]
         }
         
         class func fromJson(json: NSDictionary) -> MultiPolygon? {
-            if getType(json) == GeoJsonType.MultiPolygon {
+            if Terraformer.getType(json) == GeoJsonType.MultiPolygon {
                 if let coords = json["coordinates"] as? Double[][][][] {
                     return MultiPolygon(coordinates: coords)
                 }

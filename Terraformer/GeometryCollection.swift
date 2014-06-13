@@ -10,6 +10,7 @@ import Foundation
 
 extension Terraformer {
     class GeometryCollection : Geometry {
+        var type = GeoJsonType.GeometryCollection
         var geometries = Geometry[]()
         
         init(geometries: Geometry[]) {
@@ -20,24 +21,21 @@ extension Terraformer {
             self.init(geometries: geometries)
         }
         
-        override func type() -> GeoJsonType {
-            return GeoJsonType.GeometryCollection
-        }
-        
-        override func coordinates() -> AnyObject[] {
-            var c = AnyObject[]()
-            for g in geometries {
-                c.append(g.coordinates())
+        func toJson() -> NSDictionary {
+            var g = Any[]()
+            for p in geometries {
+                g.append(p)
             }
-            return c
+            
+            return ["type": type.toRaw(), "geometries": g]
         }
         
         class func fromJson(json: NSDictionary) -> GeometryCollection? {
-            if getType(json) == GeoJsonType.GeometryCollection {
+            if Terraformer.getType(json) == GeoJsonType.GeometryCollection {
                 if let geoms = json["geometries"] as? NSDictionary[] {
                     var gc = GeometryCollection()
                     for obj in geoms {
-                        if let geom = parseGeoJson(json) as? Geometry {
+                        if let geom = Terraformer.parse(json) as? Geometry {
                             gc.geometries.append(geom)
                         }
                     }

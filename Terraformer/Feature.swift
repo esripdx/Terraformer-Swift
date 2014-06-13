@@ -10,6 +10,7 @@ import Foundation
 
 extension Terraformer {
     class Feature : GeoJson {
+        var type = GeoJsonType.Feature
         var geometry = Geometry()
         var properties = NSDictionary()
         
@@ -22,13 +23,13 @@ extension Terraformer {
             self.init(geometry: geometry, properties: NSDictionary())
         }
         
-        override func type() -> GeoJsonType {
-            return GeoJsonType.Feature
+        func toJson() -> NSDictionary {
+            return ["type": type.toRaw(), "geometry": geometry.toJson()]
         }
         
         class func fromJson(json: NSDictionary) -> Feature? {
-            if getType(json) == GeoJsonType.Feature {
-                if let geom = parseGeoJson(json["geometry"] as NSDictionary) as? Geometry {
+            if Terraformer.getType(json) == GeoJsonType.Feature {
+                if let geom = Terraformer.parse(json["geometry"] as NSDictionary) as? Geometry {
                     var feat = Feature(geometry: geom)
                     if let props = json["properties"] as? NSDictionary {
                         feat.properties = props

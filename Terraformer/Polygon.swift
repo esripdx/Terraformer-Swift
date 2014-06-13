@@ -9,16 +9,40 @@
 import Foundation
 
 extension Terraformer {
-    class Polygon : Geometry {
+    class Polygon<LineString> : CoordinateGeometry {
+        var type = GeoJsonType.Polygon
         var outer = LineString()
         var holes = LineString[]()
+        
+        var coordinates: Polygon[] {
+        get {
+            var coords = LineString[]()
+            coords.append(outer)
+            for ls in holes {
+                coords.append(ls)
+            }
+            
+            return coords
+        }
+        set {
+            
+            for var i = 0; i < newValue.count; i++ {
+                var hs = LineString[]()
+                if i == 0 {
+                    outer = newValue[i]
+                } else {
+                    holes.append(newValue[i])
+                }
+            }
+        }
+        }
         
         init() {}
         
         convenience init(outer: LineString, holes: LineString[]) {
-            self.init()
             self.outer = outer
             self.holes = holes
+            self.init()
         }
         
         convenience init(outer: LineString, holes: LineString...) {
@@ -26,7 +50,6 @@ extension Terraformer {
         }
         
         convenience init(coordinates: Double[][][]) {
-            self.init()
             var outer = LineString()
             var holes = LineString[]()
             for var i = 0; i < coordinates.count; i++ {
@@ -39,14 +62,20 @@ extension Terraformer {
             
             self.outer = outer
             self.holes = holes
+            self.init()
         }
         
-        override func type() -> GeoJsonType {
-            return GeoJsonType.Polygon
+        func toJson() -> NSDictionary {
+            var c = Any[]()
+            for p in coordinates {
+                c.append(p)
+            }
+            
+            return ["type": type.toRaw(), "coordinates": c]
         }
         
         class func fromJson(json: NSDictionary) -> Polygon? {
-            if getType(json) == GeoJsonType.Polygon {
+            if Terraformer.getType(json) == GeoJsonType.Polygon {
                 if let coords = json["coordinates"] as? Double[][][] {
                     return Polygon(coordinates: coords)
                 }

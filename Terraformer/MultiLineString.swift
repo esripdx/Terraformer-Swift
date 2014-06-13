@@ -9,11 +9,12 @@
 import Foundation
 
 extension Terraformer {
-    class MultiLineString : Geometry {
-        var lineStrings = LineString[]()
+    class MultiLineString<LineString> : CoordinateGeometry {
+        var type = GeoJsonType.MultiLineString
+        var coordinates = LineString[]()
         
         init(lineStrings: LineString[]) {
-            self.lineStrings = lineStrings
+            coordinates = lineStrings
         }
         
         convenience init(_ lineStrings: LineString...) {
@@ -21,20 +22,23 @@ extension Terraformer {
         }
         
         convenience init(coordinates: Double[][][]) {
-            self.init()
             for arr in coordinates {
-                lineStrings.append(LineString(coordinates: arr))
+                self.coordinates.append(LineString(coordinates: arr))
             }
+            self.init()
         }
         
-        override func type() -> GeoJsonType {
-            return GeoJsonType.MultiLineString
+        func toJson() -> NSDictionary {
+            var c = Any[]()
+            for p in coordinates {
+                c.append(p)
+            }
+            
+            return ["type": type.toRaw(), "coordinates": c]
         }
-        
-        
         
         class func fromJson(json: NSDictionary) -> MultiLineString? {
-            if getType(json) == GeoJsonType.MultiLineString {
+            if Terraformer.getType(json) == GeoJsonType.MultiLineString {
                 if let coords = json["coordinates"] as? Double[][][] {
                     return MultiLineString(coordinates: coords)
                 }
