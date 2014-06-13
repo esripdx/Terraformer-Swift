@@ -31,6 +31,16 @@ extension Terraformer {
             return GeoJsonType.MultiPoint
         }
         
+        
+        func toJson() -> Dictionary<String, AnyObject> {
+            var c = AnyObject[]()
+            for p in points {
+                c.append(p.coordinate)
+            }
+            
+            return ["type": type().toRaw(), "coordinates": c]
+        }
+        
         class func fromJson(json: NSDictionary) -> MultiPoint? {
             if getType(json) == GeoJsonType.MultiPoint {
                 if let coords = json["coordinates"] as? Double[][] {

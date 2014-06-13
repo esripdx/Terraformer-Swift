@@ -10,17 +10,17 @@ import Foundation
 
 extension Terraformer {
     class Point : Geometry {
-        var coordinates = Double[]()
+        var coordinate = Double[]()
         
         // Convenience accessors
         var x : Double {
-        get { return coordinates[0] }
-        set { coordinates[0] = newValue }
+        get { return coordinate[0] }
+        set { coordinate[0] = newValue }
         }
         
         var y : Double {
-        get { return coordinates[1] }
-        set { coordinates[1] = newValue }
+        get { return coordinate[1] }
+        set { coordinate[1] = newValue }
         }
         
         var latitude : Double {
@@ -34,7 +34,7 @@ extension Terraformer {
         
         // todo: should this validate that length >= 2?
         init(coordinate: Double[]) {
-            coordinates = coordinate
+            self.coordinate = coordinate
         }
         
         convenience init(latitude: Double, longitude: Double) {
@@ -48,6 +48,14 @@ extension Terraformer {
         override func type() -> GeoJsonType {
             return GeoJsonType.Point
         }
+        
+        func toJson() -> NSDictionary {
+            return [
+                "type": type().toRaw(),
+                "coordinates": coordinate
+            ]
+        }
+
         
         class func fromJson(json: NSDictionary) -> Point? {
             if getType(json) == GeoJsonType.Point {

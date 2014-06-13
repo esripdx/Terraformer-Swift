@@ -24,6 +24,7 @@ enum GeoJsonType: String {
 class Terraformer {
     
     class GeoJson {
+        
         // override me
         func type() -> GeoJsonType {
             return GeoJsonType.Unknown
@@ -66,5 +67,14 @@ class Terraformer {
         }
     }
     
-    class Geometry : GeoJson {}
+    class Geometry : GeoJson {
+                
+        func coordinates() -> AnyObject[] {
+            return []
+        }
+    }
+    
+    init() {
+        var p = Point(x: 1, y: 2)
+    }
 }

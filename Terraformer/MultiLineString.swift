@@ -31,6 +31,8 @@ extension Terraformer {
             return GeoJsonType.MultiLineString
         }
         
+        
+        
         class func fromJson(json: NSDictionary) -> MultiLineString? {
             if getType(json) == GeoJsonType.MultiLineString {
                 if let coords = json["coordinates"] as? Double[][][] {

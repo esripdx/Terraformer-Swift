@@ -24,6 +24,14 @@ extension Terraformer {
             return GeoJsonType.GeometryCollection
         }
         
+        override func coordinates() -> AnyObject[] {
+            var c = AnyObject[]()
+            for g in geometries {
+                c.append(g.coordinates())
+            }
+            return c
+        }
+        
         class func fromJson(json: NSDictionary) -> GeometryCollection? {
             if getType(json) == GeoJsonType.GeometryCollection {
                 if let geoms = json["geometries"] as? NSDictionary[] {
