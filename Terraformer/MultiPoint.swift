@@ -31,7 +31,7 @@ extension Terraformer {
         func toJson() -> NSDictionary {
             var c = Any[]()
             for p in coordinates {
-                c.append(p)
+                c.append(p.toJson())
             }
             
             return ["type": type.toRaw(), "coordinates": c]
