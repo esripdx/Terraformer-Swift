@@ -8,49 +8,37 @@
 
 import Foundation
 
-//extension Terraformer {
-//    class MultiPoint: GeoJson, Geometry, Coordinates, Sequence {
-//        var coordinates = Point[]()
-//        
-//        var count: Int {
-//        get {
-//            return coordinates.count
-//        }
-//        }
-//        
-//        init() { }
-//        
-//        convenience init(points: Point[]) {
-//            self.init()
-//            coordinates = points
-//        }
-//        
-//        convenience init(points: Point...) {
-//            self.init(points: points)
-//        }
-//        
-//        convenience init(_ coords: Double[]...) {
-//            self.init()
-//            for c in coords {
-//                coordinates.append(Point(x: c[0], y: c[1]))
-//            }
-//        }
-//        
-//        subscript(index: Int) -> Point {
-//            get {
-//                return coordinates[index]
-//            }
-//            set {
-//                coordinates[index] = newValue
-//            }
-//        }
-//        
-//        func generate() -> GeneratorOf<Point> {
-//            return GeneratorOf(coordinates.generate())
-//        }
-//
-//        func type() -> GeoJsonType {
-//            return GeoJsonType.MultiPoint
-//        }
-//    }
-//}
+extension Terraformer {
+    class MultiPoint : Geometry {
+        var points = Point[]()
+        
+        init(points: Point[]) {
+            self.points = points
+        }
+        
+        convenience init(_ points: Point...) {
+            self.init(points: points)
+        }
+        
+        convenience init(coordinates: Double[][]) {
+            self.init()
+            for dblArray in coordinates {
+                points.append(Point(coordinate: dblArray))
+            }
+        }
+        
+        override func type() -> GeoJsonType {
+            return GeoJsonType.MultiPoint
+        }
+        
+        class func fromJson(json: NSDictionary) -> MultiPoint? {
+            if getType(json) == GeoJsonType.MultiPoint {
+                if let coords = json["coordinates"] as? Double[][] {
+                    return MultiPoint(coordinates: coords)
+                }
+            }
+            
+            return nil
+        }
+    }
+}

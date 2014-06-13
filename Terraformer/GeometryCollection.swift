@@ -8,29 +8,37 @@
 
 import Foundation
 
-//extension Terraformer {
-//    
-//    class GeometryCollection: GeoJson, Geometry, Sequence {
-//        var geometries = Geometry[]()
-//        
-//        func type() -> GeoJsonType {
-//            return GeoJsonType.GeometryCollection
-//        }
-//        
-//        func generate() -> GeneratorOf<Geometry> {
-//            return GeneratorOf(geometries.generate())
-//        }
-//        
-//        subscript(index: Int) -> Geometry {
-//            get {
-//                return geometries[index]
-//            }
-//            set {
-//                geometries[index] = newValue
-//            }
-//        }
-//        
-//        
-//    }
-//    
-//}
+extension Terraformer {
+    class GeometryCollection : Geometry {
+        var geometries = Geometry[]()
+        
+        init(geometries: Geometry[]) {
+            self.geometries = geometries
+        }
+        
+        convenience init(_ geometries: Geometry...) {
+            self.init(geometries: geometries)
+        }
+        
+        override func type() -> GeoJsonType {
+            return GeoJsonType.GeometryCollection
+        }
+        
+        class func fromJson(json: NSDictionary) -> GeometryCollection? {
+            if getType(json) == GeoJsonType.GeometryCollection {
+                if let geoms = json["geometries"] as? NSDictionary[] {
+                    var gc = GeometryCollection()
+                    for obj in geoms {
+                        if let geom = parseGeoJson(json) as? Geometry {
+                            gc.geometries.append(geom)
+                        }
+                    }
+                    
+                    return gc
+                }
+            }
+            
+            return nil
+        }
+    }
+}

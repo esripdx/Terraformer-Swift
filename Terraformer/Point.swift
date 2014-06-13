@@ -8,42 +8,55 @@
 
 import Foundation
 
-//extension Terraformer {
-//    class Point : GeoJson, Geometry, Coordinates, Sequence {
-//        var coordinates: Double[]
-//        
-//        var x: Double {
-//        get { return coordinates[0] }
-//        set { coordinates[0] = newValue }
-//        }
-//        var y: Double {
-//        get { return coordinates[1] }
-//        set { coordinates[1] = newValue }
-//        }
-//        
-//        var latitude: Double {
-//        get { return coordinates[1] }
-//        set { coordinates[1] = newValue }
-//        }
-//        var longitude: Double {
-//        get { return coordinates[0] }
-//        set { coordinates[0] = newValue }
-//        }
-//        
-//        init(x: Double, y: Double) {
-//            self.coordinates = [x, y]
-//        }
-//        
-//        convenience init(latitude: Double, longitude: Double) {
-//            self.init(x: longitude, y: latitude)
-//        }
-//        
-//        func generate() -> GeneratorOf<Double> {
-//            return GeneratorOf(coordinates.generate())
-//        }
-//        
-//        func type() -> GeoJsonType {
-//            return GeoJsonType.Point
-//        }
-//    }
-//}
+extension Terraformer {
+    class Point : Geometry {
+        var coordinates = Double[]()
+        
+        // Convenience accessors
+        var x : Double {
+        get { return coordinates[0] }
+        set { coordinates[0] = newValue }
+        }
+        
+        var y : Double {
+        get { return coordinates[1] }
+        set { coordinates[1] = newValue }
+        }
+        
+        var latitude : Double {
+        get { return y }
+        set { y = newValue }
+        }
+        var longitude : Double {
+        get { return x }
+        set { x = newValue }
+        }
+        
+        // todo: should this validate that length >= 2?
+        init(coordinate: Double[]) {
+            coordinates = coordinate
+        }
+        
+        convenience init(latitude: Double, longitude: Double) {
+            self.init(coordinate: [longitude, latitude])
+        }
+        
+        convenience init(x: Double, y: Double) {
+            self.init(coordinate: [x, y])
+        }
+        
+        override func type() -> GeoJsonType {
+            return GeoJsonType.Point
+        }
+        
+        class func fromJson(json: NSDictionary) -> Point? {
+            if getType(json) == GeoJsonType.Point {
+                if let coord = json["coordinates"] as? Double[] {
+                    return Point(coordinate: coord)
+                }
+            }
+            
+            return nil
+        }
+    }
+}
